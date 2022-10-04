@@ -1,29 +1,29 @@
 # Game Ping-Pong
 
-from tkinter import *
+from tkinter import * #importação de modulos
 import random
 import time
 
-level = int(input("Qual nível você gostaria de jogar? 1/2/3/4/5 \n"))
-length = 500/level
+level = int(input("Qual nível você gostaria de jogar? 1/2/3/4/5 \n")) #input do usuario para escolher o nivel do jogo
+length = 500/level #tamanho da barra dividido pelo nivel que o jogador escolher
 
 
-root = Tk()
+root = Tk() #alguma coisa a ver com o modulo tkinter
 root.title("Ping Pong")
 root.resizable(0,0)
 root.wm_attributes("-topmost", -1)
 
 canvas = Canvas(root, width=800, height=600, bd=0,highlightthickness=0)
-canvas.pack()
+canvas.pack() #modelagem canvas
 
 root.update()
 
 # Variável
-count = 0
-lost = False
+count = 0 #contador de pontos
+lost = False # inicial o gameOver como false
 
-class Bola:
-    def __init__(self, canvas, Barra, color):
+class Bola: #orientaçao a objetos
+    def __init__(self, canvas, Barra, color): #init fala sobre ele mesmo, por isso chama o self
         self.canvas = canvas
         self.Barra = Barra
         self.id = canvas.create_oval(0, 0, 15, 15, fill=color)
@@ -70,7 +70,7 @@ class Bola:
         if pos[3] <= self.canvas_height:
             self.canvas.after(10, self.draw)
         else:
-            game_over()
+            game_over() #quando a bolinha passa da barra, perde
             global lost
             lost = True
 
